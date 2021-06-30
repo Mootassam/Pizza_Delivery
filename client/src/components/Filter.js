@@ -6,7 +6,6 @@ export default function Filter() {
   const dispatch = useDispatch();
   const [category, setcategory] = useState("all");
   const [searchkey, setsearchkey] = useState("");
-
   return (
     <div className="container">
       <div className="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded">
@@ -31,7 +30,7 @@ export default function Filter() {
           >
             <option value="all">All</option>
             <option value="veg">Veg</option>
-            <option value="nonveg">All</option>
+            <option value="nonveg">Non Veg</option>
           </select>
         </div>
         <div className="col-md-3">

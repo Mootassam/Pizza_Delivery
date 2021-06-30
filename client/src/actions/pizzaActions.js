@@ -18,6 +18,11 @@ export const filterPizzas = (searchkey, category) => async (dispatch) => {
     filteredPizzas = response.data.filter((pizza) =>
       pizza.name.toLowerCase().includes(searchkey)
     );
+    if (category != "all") {
+      filteredPizzas = response.data.filter(
+        (pizza) => pizza.category == category
+      );
+    }
     dispatch({ type: "GET_PIZZAS_SUCCESS", payload: filteredPizzas });
   } catch (error) {
     dispatch({ type: "GET_PIZZAS_FAILED", payload: error });
