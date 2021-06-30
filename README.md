@@ -1,1 +1,3 @@
-![Screenshot](pizza.png.png)
+<p align="center">
+  <img src="./pizza.png" >
+</p>
