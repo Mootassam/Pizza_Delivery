@@ -7,6 +7,8 @@ import Homescreen from "./screens/Homescreen";
 import Cartscreen from "./screens/Cartscreen.js";
 import Registerscreen from "./screens/Registerscreen";
 import Loginscreen from "./screens/Loginscreen";
+import AdminScreen from "./screens/AdminScreen";
+
 import { Link, Switch, BrowserRouter, Route } from "react-router-dom";
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/cart" exact component={Cartscreen} />
         <Route path="/register" exact component={Registerscreen} />
         <Route path="/login" exact component={Loginscreen} />
+        <Route path="/admin" component={AdminScreen} />
       </BrowserRouter>
     </div>
   );
