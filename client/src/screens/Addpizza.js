@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPizza } from "../actions/pizzaActions";
+import Loading from "../components/Loading";
+import Erros from "../components/Erros";
+import Success from "../components/Success";
+
 export default function Addpizza() {
   const [name, setnName] = useState();
   const [smallPrice, setsmallPrice] = useState();
@@ -11,7 +15,9 @@ export default function Addpizza() {
 
   const [category, setcategory] = useState();
   const dispatch = useDispatch();
+  const addpizzastate = useSelector((state) => state.addPizzaReducer);
 
+  const { loading, error, success } = addpizzastate;
   function formHandler(e) {
     e.preventDefault();
     const pizza = {
@@ -30,6 +36,11 @@ export default function Addpizza() {
   return (
     <div>
       <h1>Addpizza</h1>
+      {loading && <Loading />}
+      {error && <Erros error="something went wrong" />}
+
+      {success && <Success success="Pizza added successfull" />}
+
       <form onSubmit={formHandler}>
         <input
           type="text"
