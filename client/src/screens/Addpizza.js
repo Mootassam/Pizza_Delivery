@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addPizza } from "../actions/pizzaActions";
 export default function Addpizza() {
   const [name, setnName] = useState();
   const [smallPrice, setsmallPrice] = useState();
@@ -7,7 +8,10 @@ export default function Addpizza() {
   const [largePrice, setlargePrice] = useState();
   const [image, setimage] = useState();
   const [description, setdescription] = useState();
+
   const [category, setcategory] = useState();
+  const dispatch = useDispatch();
+
   function formHandler(e) {
     e.preventDefault();
     const pizza = {
@@ -21,9 +25,7 @@ export default function Addpizza() {
       description,
       category,
     };
-    console.log("====================================");
-    console.log(pizza);
-    console.log("====================================");
+    dispatch(addPizza(pizza));
   }
   return (
     <div>
