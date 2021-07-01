@@ -23,33 +23,33 @@ export default function AdminScreen() {
           <h2 style={{ fontSize: "35px" }}>Admin Panel</h2>
           <ul className="adminFunction">
             <li>
-              <Link to="/admin/userlist" style={{ color: "white" }}>
+              <Link to={"/admin/userlist"} style={{ color: "white" }}>
                 Users List
               </Link>
             </li>
             <li>
-              <Link to="/admin/pizzaslist" style={{ color: "white" }}>
+              <Link to={"/admin/pizzaslist"} style={{ color: "white" }}>
                 Pizza List
               </Link>
             </li>
             <li>
-              <Link to="/admin/addpizza" style={{ color: "white" }}>
+              <Link to={"/admin/addpizza"} style={{ color: "white" }}>
                 Add New Pizza
               </Link>
             </li>
             <li>
-              <Link to="/admin/orderlist" style={{ color: "white" }}>
+              <Link to={"/admin/orderlist"} style={{ color: "white" }}>
                 Orderes List
               </Link>
             </li>
           </ul>
 
           <Switch>
-            <Route path="/admin" componenet={Userslist} exact />
-            <Route path="/admin/userlist" componenet={Userslist} exact />
-            <Route path="/admin/pizzaslist" componenet={Pizzaslist} exact />
-            <Route path="/admin/addpizza" componenet={Addpizza} exact />
-            <Route path="/admin/orderlist" componenet={Orderslist} exact />
+            <Route path="/admin" exact component={Userslist} />
+            <Route path="/admin/userlist" component={Userslist} />
+            <Route path="/admin/pizzaslist" component={Pizzaslist} />
+            <Route path="/admin/addpizza" component={Addpizza} />
+            <Route path="/admin/orderlist" component={Orderslist} />
           </Switch>
         </div>
       </div>
