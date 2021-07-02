@@ -64,6 +64,7 @@ export const editPizza = (editedpizza) => async (dispatch) => {
       { editedpizza }
     );
     dispatch({ type: "EDIT_PIZZA_SUCCESS" });
+    window.location.href = "/admin/pizzaslist";
   } catch (error) {
     dispatch({ type: "EDIT_PIZZA_FAILED", payload: error });
   }

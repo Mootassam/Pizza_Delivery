@@ -43,6 +43,7 @@ export default function Editpizza({ match }) {
   function formHandler(e) {
     e.preventDefault();
     const editedpizza = {
+      _id: match.params.pizzaid,
       name,
       prices: {
         small: smallPrice,
@@ -62,6 +63,8 @@ export default function Editpizza({ match }) {
       {loading && <Loading />}
       {error && <Erros error="something went wrong" />}
       {editsuccess && <Success success="Pizza detail edited successful" />}
+      {editloading && <Loading />}
+
       <form onSubmit={formHandler}>
         <input
           type="text"

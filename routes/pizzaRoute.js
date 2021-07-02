@@ -37,4 +37,20 @@ router.post("/getpizzabyid", async (req, res) => {
   }
 });
 
+router.post("/editpizza", async (req, res) => {
+  const editedpizza = req.body.editedpizza;
+  try {
+    const pizza = await Pizza.findOne({ _id: editedpizza });
+    (pizza.name = editedpizza.name),
+      (pizza.description = editedpizza.description),
+      (pizza.image = editedpizza.image),
+      (pizza.category = editedpizza.category),
+      (pizza.prices = [editedpizza.prices]);
+    await pizza.save();
+    res.send(pizza);
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+});
+
 module.exports = router;
