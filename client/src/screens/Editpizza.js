@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import Erros from "../components/Erros";
 import Success from "../components/Success";
 
-import { getPizzaById } from "../actions/pizzaActions";
+import { editPizza, getPizzaById } from "../actions/pizzaActions";
 export default function Editpizza({ match }) {
   const [name, setnName] = useState();
   const [smallPrice, setsmallPrice] = useState();
@@ -13,10 +13,15 @@ export default function Editpizza({ match }) {
   const [image, setimage] = useState();
   const [description, setdescription] = useState();
   const [category, setcategory] = useState();
+
   const dispatch = useDispatch();
 
   const getpizzabyidstate = useSelector((state) => state.getPizzaByIdReducer);
   const { pizza, error, loading } = getpizzabyidstate;
+
+  const editpizzaState = useSelector((state) => state.editPizzaReducer);
+
+  const { editloading, editsuccess, editerror } = editpizzaState;
   useEffect(() => {
     if (pizza) {
       if (pizza._id === match.params.pizzaid) {
@@ -37,7 +42,7 @@ export default function Editpizza({ match }) {
   }, [pizza, dispatch]);
   function formHandler(e) {
     e.preventDefault();
-    const pizza = {
+    const editedpizza = {
       name,
       prices: {
         small: smallPrice,
@@ -48,7 +53,7 @@ export default function Editpizza({ match }) {
       description,
       category,
     };
-    // dispatch(addPizza(pizza));
+    dispatch(editPizza(editedpizza));
   }
 
   return (
@@ -56,6 +61,7 @@ export default function Editpizza({ match }) {
       <h1>Edit Pizza </h1>
       {loading && <Loading />}
       {error && <Erros error="something went wrong" />}
+      {editsuccess && <Success success="Pizza detail edited successful" />}
       <form onSubmit={formHandler}>
         <input
           type="text"
@@ -120,7 +126,7 @@ export default function Editpizza({ match }) {
             setcategory(e.target.value);
           }}
         />
-        <button className="btn mt-3">Add Pizza</button>
+        <button className="btn mt-3">Edit Pizza</button>
       </form>
     </div>
   );

@@ -55,3 +55,16 @@ export const addPizza = (pizza) => async (dispatch) => {
     dispatch({ type: "ADD_PIZZA_FAILED", payload: error });
   }
 };
+
+export const editPizza = (editedpizza) => async (dispatch) => {
+  dispatch({ type: "EDIT_PIZZA_REQUEST" });
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/pizzas/editpizza",
+      { editedpizza }
+    );
+    dispatch({ type: "EDIT_PIZZA_SUCCESS" });
+  } catch (error) {
+    dispatch({ type: "EDIT_PIZZA_FAILED", payload: error });
+  }
+};

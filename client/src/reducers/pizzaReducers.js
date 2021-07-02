@@ -54,3 +54,22 @@ export const addPizzaReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const editPizzaReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "EDIT_PIZZA_REQUEST":
+      return { editloading: true, ...state };
+    case "EDIT_PIZZA_SUCCESS":
+      return {
+        editloading: false,
+        editsuccess: true,
+      };
+    case "EDIT_PIZZA_FAILED":
+      return {
+        editerror: action.payload,
+        editloading: false,
+      };
+    default:
+      return state;
+  }
+};
