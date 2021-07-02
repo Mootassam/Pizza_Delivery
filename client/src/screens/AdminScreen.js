@@ -5,6 +5,7 @@ import Pizzaslist from "./Pizzaslist";
 import Userslist from "./Userslist";
 import Addpizza from "./Addpizza";
 import Orderslist from "./Orderslist";
+import Editpizza from "./Editpizza";
 
 export default function AdminScreen() {
   const userState = useSelector((state) => state.loginReducer);
@@ -50,6 +51,7 @@ export default function AdminScreen() {
             <Route path="/admin/pizzaslist" component={Pizzaslist} />
             <Route path="/admin/addpizza" component={Addpizza} />
             <Route path="/admin/orderlist" component={Orderslist} />
+            <Route path="/admin/editpizza/:pizzaid" component={Editpizza} />
           </Switch>
         </div>
       </div>

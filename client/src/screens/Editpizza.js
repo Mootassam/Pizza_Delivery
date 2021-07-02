@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPizza } from "../actions/pizzaActions";
 import Loading from "../components/Loading";
 import Erros from "../components/Erros";
 import Success from "../components/Success";
 
-export default function Addpizza() {
+import { getPizzaById } from "../actions/pizzaActions";
+export default function Editpizza({ match }) {
   const [name, setnName] = useState();
   const [smallPrice, setsmallPrice] = useState();
   const [mediumPrice, setmediumPrice] = useState();
@@ -13,11 +13,28 @@ export default function Addpizza() {
   const [image, setimage] = useState();
   const [description, setdescription] = useState();
   const [category, setcategory] = useState();
-  
   const dispatch = useDispatch();
-  const addpizzastate = useSelector((state) => state.addPizzaReducer);
 
-  const { loading, error, success } = addpizzastate;
+  const getpizzabyidstate = useSelector((state) => state.getPizzaByIdReducer);
+  const { pizza, error, loading } = getpizzabyidstate;
+  useEffect(() => {
+    if (pizza) {
+      if (pizza._id === match.params.pizzaid) {
+        setnName(pizza.name);
+        setsmallPrice(pizza.prices[0]["small"]);
+        setmediumPrice(pizza.prices[0]["medium"]);
+        setlargePrice(pizza.prices[0]["large"]);
+        setimage(pizza.image);
+        setdescription(pizza.description);
+        setcategory(pizza.category);
+        setnName(pizza.name);
+      } else {
+        dispatch(getPizzaById(match.params.pizzaid));
+      }
+    } else {
+      dispatch(getPizzaById(match.params.pizzaid));
+    }
+  }, [pizza, dispatch]);
   function formHandler(e) {
     e.preventDefault();
     const pizza = {
@@ -31,16 +48,14 @@ export default function Addpizza() {
       description,
       category,
     };
-    dispatch(addPizza(pizza));
+    // dispatch(addPizza(pizza));
   }
+
   return (
     <div>
-      <h1>Addpizza</h1>
+      <h1>Edit Pizza </h1>
       {loading && <Loading />}
       {error && <Erros error="something went wrong" />}
-
-      {success && <Success success="Pizza added successfull" />}
-
       <form onSubmit={formHandler}>
         <input
           type="text"

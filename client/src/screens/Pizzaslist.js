@@ -5,6 +5,7 @@ import { getAllPizzas } from "../actions/pizzaActions";
 import Loading from "../components/Loading";
 import Erros from "../components/Erros";
 import Filter from "../components/Filter";
+import { Link } from "react-router-dom";
 
 export default function Pizzaslist() {
   const dispatch = useDispatch();
@@ -42,7 +43,9 @@ export default function Pizzaslist() {
                   <td>{map.category}</td>
                   <td>
                     <i className="fa fa-trash m-1"></i>
-                    <i className="fa fa-edit m-1"></i>
+                    <Link to={`/admin/editpizza/${map._id}`}>
+                      <i className="fa fa-edit m-1"></i>
+                    </Link>
                   </td>
                 </tr>
               );

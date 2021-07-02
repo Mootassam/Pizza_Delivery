@@ -27,4 +27,14 @@ router.post("/addPizzas", async (req, res) => {
   }
 });
 
+router.post("/getpizzabyid", async (req, res) => {
+  const pizzaid = req.body.pizzaid;
+  try {
+    const pizza = await Pizza.findOne({ _id: pizzaid });
+    res.send(pizza);
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+});
+
 module.exports = router;

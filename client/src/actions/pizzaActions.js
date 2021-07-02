@@ -10,6 +10,20 @@ export const getAllPizzas = () => async (dispatch) => {
   }
 };
 
+export const getPizzaById = (pizzaid) => async (dispatch) => {
+  dispatch({ type: "GET_PIZZABYID_REQUEST" });
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/pizzas/getpizzabyid",
+      { pizzaid }
+    );
+
+    dispatch({ type: "GET_PIZZABYID_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_PIZZABYID_FAILED", payload: error });
+  }
+};
+
 export const filterPizzas = (searchkey, category) => async (dispatch) => {
   var filteredPizzas;
   dispatch({ type: "GET_PIZZAS_REQUEST" });
