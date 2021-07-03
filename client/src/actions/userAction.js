@@ -34,3 +34,13 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("currentUser");
   window.location.href = "/login";
 };
+
+export const allUser = () => async (dispatch) => {
+  dispatch({ type: "GET_USERS_REQUEST" });
+  try {
+    const response = await axios.get("http://localhost:8080/api/users/allUser");
+    dispatch({ type: "GET_USERS_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_USERS_FAILED", payload: error });
+  }
+};

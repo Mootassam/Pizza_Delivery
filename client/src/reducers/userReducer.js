@@ -28,3 +28,19 @@ export const loginUserReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const UserListReducer = (state = { User: [] }, action) => {
+  switch (action.type) {
+    case "GET_USERS_REQUEST":
+      return { loading: true, ...state };
+
+    case "GET_USERS_SUCCESS":
+      return { loading: false, payload: action.payload };
+      break;
+
+    case "GET_USERS_FAILED":
+      return { loading: false, error: action.error };
+    default:
+      return state;
+  }
+};
