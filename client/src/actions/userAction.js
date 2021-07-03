@@ -44,3 +44,14 @@ export const allUser = () => async (dispatch) => {
     dispatch({ type: "GET_USERS_FAILED", payload: error });
   }
 };
+
+export const DeleteUser = (user_id) => async (dispatch) => {
+  dispatch({ type: "DELETE_USERS_REQUEST" });
+  try {
+    await axios.post("http://localhost:8080/api/users/deleteUser", { user_id });
+    dispatch({ type: "DELETE_USERS_SUCCESS" });
+    window.location.reload();
+  } catch (error) {
+    dispatch({ type: "DELETE_USERS_FAILED", payload: error });
+  }
+};

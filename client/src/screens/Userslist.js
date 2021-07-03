@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allUser } from "../actions/userAction";
-
+import { allUser, DeleteUser } from "../actions/userAction";
 import Loading from "../components/Loading";
 import Erros from "../components/Erros";
+
 export default function Userslist() {
   const dispatch = useDispatch();
   const userALlState = useSelector((state) => state.UserListReducer);
@@ -38,7 +38,12 @@ export default function Userslist() {
                   <td>{map.email}</td>
                   <td>{map.password}</td>
                   <td>
-                    <i className="fa fa-trash m-1"></i>
+                    <i
+                      className="fa fa-trash"
+                      onClick={() => {
+                        dispatch(DeleteUser(map._id));
+                      }}
+                    ></i>
                     <i className="fa fa-edit m-1"></i>
                   </td>
                 </tr>

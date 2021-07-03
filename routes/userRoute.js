@@ -44,4 +44,15 @@ router.get("/allUser", async (req, res) => {
   }
 });
 
+router.post("/deleteUser", async (req, res) => {
+  const _id = req.body.user_id;
+
+  try {
+    await User.findOneAndDelete({ _id: _id });
+    res.send({ message: "delete Successfully" });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;

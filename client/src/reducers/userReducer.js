@@ -39,7 +39,7 @@ export const UserListReducer = (state = { User: [] }, action) => {
       break;
 
     case "GET_USERS_FAILED":
-      return { loading: false, error: action.error };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
