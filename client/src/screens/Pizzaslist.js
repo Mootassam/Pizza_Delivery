@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPizzas } from "../actions/pizzaActions";
+import { deltePizza, getAllPizzas } from "../actions/pizzaActions";
 
 import Loading from "../components/Loading";
 import Erros from "../components/Erros";
@@ -42,7 +42,12 @@ export default function Pizzaslist() {
                   </td>
                   <td>{map.category}</td>
                   <td>
-                    <i className="fa fa-trash m-1"></i>
+                    <i
+                      className="fa fa-trash m-1"
+                      onClick={() => {
+                        dispatch(deltePizza(map._id));
+                      }}
+                    ></i>
                     <Link to={`/admin/editpizza/${map._id}`}>
                       <i className="fa fa-edit m-1"></i>
                     </Link>

@@ -69,3 +69,20 @@ export const editPizza = (editedpizza) => async (dispatch) => {
     dispatch({ type: "EDIT_PIZZA_FAILED", payload: error });
   }
 };
+
+export const deltePizza = (pizzaid) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:8080/api/pizzas/deletepizza",
+      {
+        pizzaid,
+      }
+    );
+    alert("Pizza deleted Successufull");
+    console.log(response);
+    window.location.reload();
+  } catch (error) {
+    alert("something went wrong");
+    console.log(error);
+  }
+};
