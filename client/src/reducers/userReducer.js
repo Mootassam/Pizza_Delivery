@@ -44,3 +44,29 @@ export const UserListReducer = (state = { User: [] }, action) => {
       return state;
   }
 };
+
+export const EditUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "EDIT_USER_REQUEST":
+      return { loading: true, ...state };
+    case "EDIT_USER_SUCCESS":
+      return { loading: false, success: true };
+    case "EDIT_USER_FAILED":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const UserFindById = (state = {}, action) => {
+  switch (action.type) {
+    case "FIND_USER_REQUEST":
+      return { loading: true, ...state };
+    case "FIND_USER_SUCCESS":
+      return { loading: false, payload: action.payload };
+    case "FIND_USER_ERROR":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

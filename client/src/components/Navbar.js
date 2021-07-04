@@ -28,31 +28,29 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav d-flex ml-auto">
               {currentUser ? (
-                <div className="dropdown">
-                  <a
-                    className="dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    {currentUser.name}
-                  </a>
-
-                  <a className="dropdown-item" href="#">
-                    Orders
-                  </a>
-                  <a
-                    className="dropdown-item"
-                    href=""
-                    onClick={() => {
-                      dispatch(logoutUser());
-                    }}
-                  >
-                    <li>Logout</li>
-                  </a>
-                </div>
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link active" aria-current="page">
+                      {currentUser.name}
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link active" href="/admin">
+                      <li>Dashboard</li>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link active"
+                      href=""
+                      onClick={() => {
+                        dispatch(logoutUser());
+                      }}
+                    >
+                      <li>Logout</li>
+                    </a>
+                  </li>
+                </>
               ) : (
                 <li className="nav-item">
                   <a

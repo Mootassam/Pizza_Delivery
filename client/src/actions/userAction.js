@@ -55,3 +55,26 @@ export const DeleteUser = (user_id) => async (dispatch) => {
     dispatch({ type: "DELETE_USERS_FAILED", payload: error });
   }
 };
+
+export const EditUsersa = (user) => async (dispatch) => {
+  dispatch({ type: "EDIT_USER_REQUEST" });
+  try {
+    await axios.post("http://localhost:8080/api/users/editUser", { user });
+    dispatch({ type: "EDIT_USER_SUCCESS" });
+  } catch (error) {
+    dispatch({ type: "EDIT_USER_FAILED", payload: error });
+  }
+};
+
+export const UserById = (user_id) => async (dispatch) => {
+  dispatch({ type: "FIND_USER_REQUEST" });
+  try {
+    const respone = await axios.post(
+      "http://localhost:8080/api/users/UserById",
+      { user_id }
+    );
+    dispatch({ type: "FIND_USER_SUCCESS", payload: respone.data });
+  } catch (error) {
+    dispatch({ type: "FIND_USER_ERROR", payload: error });
+  }
+};

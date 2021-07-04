@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const express = require("express");
 
 const router = express.Router();
@@ -52,6 +53,32 @@ router.post("/deleteUser", async (req, res) => {
     res.send({ message: "delete Successfully" });
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+router.post("/editUser", async (req, res) => {
+  const id = req.body.user;
+
+  try {
+    const user = await User.findOne({ _id: id._id });
+    (user.name = id.name),
+      (user.email = id.email),
+      (user.password = id.password);
+    await user.save();
+    res.send(user);
+  } catch (error) {
+    return res.status(400).json({ error: error });
+  }
+});
+
+router.post("/UserById", async (req, res) => {
+  const id = req.body.user_id;
+
+  try {
+    const response = await User.findById({ _id: id });
+    res.send(response);
+  } catch (error) {
+    res.status(400).json({ error: error });
   }
 });
 

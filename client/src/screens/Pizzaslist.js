@@ -57,7 +57,6 @@ export default function Pizzaslist() {
             })}
         </tbody>
       </table>
-      <h1>Pizzaslist</h1>
     </div>
   );
 }

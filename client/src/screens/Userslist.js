@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allUser, DeleteUser } from "../actions/userAction";
+import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import Erros from "../components/Erros";
 
@@ -44,7 +45,9 @@ export default function Userslist() {
                         dispatch(DeleteUser(map._id));
                       }}
                     ></i>
-                    <i className="fa fa-edit m-1"></i>
+                    <Link to={`/admin/edituser/${map._id}`}>
+                      <i className="fa fa-edit m-1"></i>
+                    </Link>
                   </td>
                 </tr>
               );
